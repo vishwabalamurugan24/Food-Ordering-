@@ -2,14 +2,17 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import Home from './pages/Home';
-import AIAssistant from './pages/AIAssistant';
-import MenuView from './pages/MenuView';
-import Recommendations from './pages/Recommendations';
-import ExploreMap from './pages/ExploreMap';
-import Cart from './pages/Cart';
-import OrderConfirmation from './pages/OrderConfirmation';
-import Profile from './pages/Profile';
+import HomePage from './pages/HomePage';
+import AIAssistantPage from './pages/AIAssistantPage';
+import MenuPage from './pages/MenuPage';
+import RecommendationPage from './pages/RecommendationPage';
+import MapDiscoveryPage from './pages/MapDiscoveryPage';
+import WeatherHealthPage from './pages/WeatherHealthPage';
+import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import OrderConfirmationPage from './pages/OrderConfirmationPage';
+import UserProfilePage from './pages/UserProfilePage';
+import ChatBot from './components/ChatBot/ChatBot';
 
 function App() {
   return (
@@ -18,17 +21,20 @@ function App() {
         <Navbar />
         <div className="flex-1">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/assistant" element={<AIAssistant />} />
-            <Route path="/menu" element={<MenuView />} />
-            <Route path="/recommendations" element={<Recommendations />} />
-            <Route path="/map" element={<ExploreMap />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/confirmation" element={<OrderConfirmation />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/assistant" element={<AIAssistantPage />} />
+            <Route path="/menu" element={<MenuPage />} />
+            <Route path="/recommendations" element={<RecommendationPage />} />
+            <Route path="/weather-health" element={<WeatherHealthPage />} />
+            <Route path="/map" element={<MapDiscoveryPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/confirmation" element={<OrderConfirmationPage />} />
+            <Route path="/profile" element={<UserProfilePage />} />
           </Routes>
         </div>
         <Footer />
+        <ChatBot />
       </div>
     </Router>
   );

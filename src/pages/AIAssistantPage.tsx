@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-// import { parseVoiceCommand, getSmartRecommendations } from '../lib/AgentLogic';
+import { sendAIChat } from '../lib/data';
 
-const AIAssistant: React.FC = () => {
+const AIAssistantPage: React.FC = () => {
   const [messages, setMessages] = useState([
     { role: 'ai', text: 'Vanakkam! Hello! I can help you order in English or Tamil. What would you like to eat today?' }
   ]);
@@ -14,39 +14,30 @@ const AIAssistant: React.FC = () => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleSend = (text: string) => {
+  const handleSend = async (text: string) => {
     if (!text.trim()) return;
     setMessages(prev => [...prev, { role: 'user', text }]);
     setInputText('');
 
-    // Mock processing
-    setTimeout(() => {
-      const response = "I've noted that! Anything else?";
+    try {
+      const { response } = await sendAIChat('default-user-id', text);
       setMessages(prev => [...prev, { role: 'ai', text: response }]);
-    }, 600);
+    } catch (err) {
+      setMessages(prev => [...prev, { role: 'ai', text: "I'm having trouble connecting to my brain right now. Please try again later." }]);
+    }
   };
 
   return (
     <div className="flex h-[calc(100vh-80px)] overflow-hidden relative bg-[radial-gradient(circle_at_center,rgba(244,133,37,0.05)_0%,transparent_70%)]">
-      {/* Sidebar - Desktop */}
       <aside className="hidden lg:flex w-64 flex-col border-r border-primary/10 p-6 bg-background-dark/50 backdrop-blur-md">
         <nav className="flex flex-col gap-2">
           <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-background-dark shadow-lg">
             <span className="material-symbols-outlined text-background-dark font-bold">chat_bubble</span>
             <span className="font-semibold">Chat</span>
           </div>
-          <div className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-primary/5 hover:text-primary transition-all">
-            <span className="material-symbols-outlined">receipt_long</span>
-            <span className="font-medium">Recent Orders</span>
-          </div>
         </nav>
-        <div className="mt-auto p-4 rounded-2xl bg-primary/5 border border-primary/10">
-          <p className="text-xs text-primary font-bold uppercase tracking-wider mb-2">Tamil Support Active</p>
-          <p className="text-xs text-slate-500">You can speak in English or தமிழ்.</p>
-        </div>
       </aside>
 
-      {/* Main Chat Area */}
       <section className="flex flex-1 flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto p-6 space-y-8 scroll-smooth">
           <AnimatePresence>
@@ -72,17 +63,8 @@ const AIAssistant: React.FC = () => {
           <div ref={scrollRef} />
         </div>
 
-        {/* Controls */}
         <div className="p-6 bg-background-dark/80 backdrop-blur-2xl border-t border-primary/10">
           <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
-            {isListening && (
-              <div className="flex items-center gap-1 h-8">
-                {[...Array(9)].map((_, i) => (
-                  <div key={i} className="w-1 bg-primary rounded-full animate-pulse" style={{ height: Math.random() * 20 + 8 + 'px' }}></div>
-                ))}
-              </div>
-            )}
-            
             <form 
               onSubmit={(e) => { e.preventDefault(); handleSend(inputText); }}
               className="flex w-full items-center gap-4"
@@ -99,13 +81,6 @@ const AIAssistant: React.FC = () => {
                   <span className="material-symbols-outlined">send</span>
                 </button>
               </div>
-              <button 
-                type="button"
-                onClick={() => setIsListening(!isListening)}
-                className={`h-14 w-14 flex items-center justify-center rounded-2xl transition-all ${isListening ? 'bg-red-500 shadow-red-500/30 animate-pulse' : 'bg-primary shadow-primary/30'} text-background-dark shadow-xl hover:scale-105`}
-              >
-                <span className="material-symbols-outlined font-bold text-3xl">mic</span>
-              </button>
             </form>
           </div>
         </div>
@@ -114,4 +89,4 @@ const AIAssistant: React.FC = () => {
   );
 };
 
-export default AIAssistant;
+export default AIAssistantPage;

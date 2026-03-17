@@ -1,7 +1,7 @@
 import React from 'react';
 // import { motion } from 'framer-motion';
 
-const Recommendations: React.FC = () => {
+const RecommendationPage: React.FC = () => {
   return (
     <main className="flex-1 max-w-7xl mx-auto w-full p-4 md:p-8">
       <div className="flex flex-col gap-6 mb-10">
@@ -66,4 +66,4 @@ const Recommendations: React.FC = () => {
   );
 };
 
-export default Recommendations;
+export default RecommendationPage;

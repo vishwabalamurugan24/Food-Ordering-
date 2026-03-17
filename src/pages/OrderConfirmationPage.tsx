@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const OrderConfirmation: React.FC = () => {
+const OrderConfirmationPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-160px)] px-6 text-center">
       <motion.div
@@ -57,4 +57,4 @@ const OrderConfirmation: React.FC = () => {
   );
 };
 
-export default OrderConfirmation;
+export default OrderConfirmationPage;

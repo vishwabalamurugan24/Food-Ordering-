@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const Cart: React.FC = () => {
+const CartPage: React.FC = () => {
   const [step, setStep] = useState(1); // 1: Cart, 2: Address, 3: Payment
   
   return (
@@ -182,4 +182,4 @@ const Cart: React.FC = () => {
   );
 };
 
-export default Cart;
+export default CartPage;

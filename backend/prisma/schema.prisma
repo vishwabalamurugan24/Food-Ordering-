@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  user_id            String           @id @default(uuid())
+  name               String
+  email              String           @unique
+  password           String
+  phone_number       String?
+  address            String?
+  preferred_language String           @default("English")
+  created_at         DateTime         @default(now())
+  orders             Order[]
+  carts              Cart[]
+  reviews            Review[]
+  interactions       AIInteraction[]
+  recommendations    FoodRecommendation[]
+}
+
+model Restaurant {
+  restaurant_id      String    @id @default(uuid())
+  restaurant_name    String
+  location_latitude  Float?
+  location_longitude Float?
+  address           String
+  rating             Float     @default(0)
+  food_type          String
+  opening_time       String
+  closing_time       String
+  menu_items         MenuItem[]
+  orders             Order[]
+  reviews            Review[]
+}
+
+model MenuItem {
+  food_id             String    @id @default(uuid())
+  restaurant          Restaurant @relation(fields: [restaurant_id], references: [restaurant_id])
+  restaurant_id       String
+  food_name           String
+  category            String
+  price               Float
+  description         String
+  rating              Float     @default(0)
+  image_url           String?
+  model_3d_url        String?
+  availability_status String    @default("Available")
+  order_items         OrderItem[]
+  carts               Cart[]
+  recommendations     FoodRecommendation[]
+}
+
+model Order {
+  order_id         String     @id @default(uuid())
+  user             User       @relation(fields: [user_id], references: [user_id])
+  user_id          String
+  restaurant       Restaurant @relation(fields: [restaurant_id], references: [restaurant_id])
+  restaurant_id    String
+  total_price      Float
+  order_status     String     @default("Pending")
+  payment_method   String
+  delivery_address String
+  order_time       DateTime   @default(now())
+  order_items      OrderItem[]
+}
+
+model OrderItem {
+  order_item_id String   @id @default(uuid())
+  order         Order    @relation(fields: [order_id], references: [order_id])
+  order_id      String
+  food          MenuItem @relation(fields: [food_id], references: [food_id])
+  food_id       String
+  quantity      Int
+  price         Float
+}
+
+model Cart {
+  cart_id    String   @id @default(uuid())
+  user       User     @relation(fields: [user_id], references: [user_id])
+  user_id    String
+  food       MenuItem @relation(fields: [food_id], references: [food_id])
+  food_id    String
+  quantity   Int
+  added_time DateTime @default(now())
+}
+
+model Review {
+  review_id     String     @id @default(uuid())
+  user          User       @relation(fields: [user_id], references: [user_id])
+  user_id       String
+  restaurant    Restaurant @relation(fields: [restaurant_id], references: [restaurant_id])
+  restaurant_id String
+  rating        Int
+  comment       String
+  review_date   DateTime   @default(now())
+}
+
+model AIInteraction {
+  interaction_id String   @id @default(uuid())
+  user           User     @relation(fields: [user_id], references: [user_id])
+  user_id        String
+  user_message   String
+  ai_response    String
+  timestamp      DateTime @default(now())
+}
+
+model WeatherData {
+  weather_id        String   @id @default(uuid())
+  location          String
+  temperature       Float
+  weather_condition String
+  recorded_time     DateTime @default(now())
+}
+
+model FoodRecommendation {
+  recommendation_id String   @id @default(uuid())
+  user              User     @relation(fields: [user_id], references: [user_id])
+  user_id           String
+  food              MenuItem @relation(fields: [food_id], references: [food_id])
+  food_id           String
+  reason            String
+  created_time      DateTime @default(now())
+}

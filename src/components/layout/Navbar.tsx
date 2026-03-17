@@ -14,8 +14,9 @@ export const Navbar: React.FC = () => {
             <Link to="/" className="text-sm font-semibold text-primary">Home</Link>
             <Link to="/menu" className="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Menu</Link>
             <Link to="/assistant" className="text-sm font-medium text-slate-400 hover:text-primary transition-colors">AI Assistant</Link>
-            <Link to="/recommendations" className="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Smart Recs</Link>
-            <Link to="/map" className="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Explore</Link>
+            <Link to="/recommendations" className="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Personalized</Link>
+            <Link to="/weather-health" className="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Weather/Health</Link>
+            <Link to="/map" className="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Discovery</Link>
           </nav>
         </div>
         <div className="flex items-center gap-4">
@@ -29,7 +30,10 @@ export const Navbar: React.FC = () => {
           </div>
           <Link to="/cart" className="p-2 hover:bg-primary/10 rounded-full transition-colors relative text-slate-100">
             <span className="material-symbols-outlined">shopping_cart</span>
-            <span className="absolute top-1 right-1 bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+            <span className="absolute top-1 right-1 bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+          </Link>
+          <Link to="/checkout" className="p-2 hover:bg-primary/10 rounded-full transition-colors text-slate-100">
+            <span className="material-symbols-outlined">payments</span>
           </Link>
           <Link to="/profile">
             <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-primary/20 bg-cover bg-center" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAV5QQzBdka6DlYlxcztircSUAjSwuWiJnM895teCGruS_m0ko2A7QO28Ww7453yBikkG9RFhVJkvZHnV_nzNrRaKdp8i6mI8gt89MdRvlm0ZGQyXHKMXT5F86b0vk8DxH_gaj96auarvDMqO7NjBr6thyG8qdXoVzGPiAbYEdE5nfaGw0KMH63KGWyUlueqYaxJRRp-2Bo2_CaRpfm4Mzi5Is6XHfXiMDSzqxuwomtHj5CylQ6XJn7xbZMwiCI338bS6hwWKFlZzgs')" }}></div>

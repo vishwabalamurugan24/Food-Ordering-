@@ -1,7 +1,7 @@
 import React from 'react';
 // import { motion } from 'framer-motion';
 
-const ExploreMap: React.FC = () => {
+const MapDiscoveryPage: React.FC = () => {
   return (
     <div className="relative flex flex-1 h-[calc(100vh-80px)] overflow-hidden">
       <aside className="absolute left-6 top-6 bottom-6 z-10 flex w-80 flex-col gap-4 pointer-events-none">
@@ -54,4 +54,4 @@ const ExploreMap: React.FC = () => {
   );
 };
 
-export default ExploreMap;
+export default MapDiscoveryPage;

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <div className="flex flex-col">
       <div className="fixed inset-0 bg-gradient-to-br from-primary/10 via-background-dark to-background-dark -z-10 opacity-50"></div>
@@ -97,4 +97,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HomePage;

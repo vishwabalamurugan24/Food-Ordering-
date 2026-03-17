@@ -1,7 +1,7 @@
 import React from 'react';
 // import { motion } from 'framer-motion';
 
-const Profile: React.FC = () => {
+const UserProfilePage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto w-full px-6 py-12">
       <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
@@ -81,4 +81,4 @@ const Profile: React.FC = () => {
   );
 };
 
-export default Profile;
+export default UserProfilePage;
